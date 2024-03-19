@@ -1,0 +1,29 @@
+abstract class AppImages {
+  static const care = 'assets/svg/care.svg';
+  static const arrowLeft = 'assets/svg/arrow_left.svg';
+  static const androidArrowLeft = 'assets/svg/android_arrow_left.svg';
+  static const iosArrowLeft = 'assets/svg/ios_arrow_left.svg';
+  static const accessories = 'assets/svg/accessories.svg';
+  static const close = 'assets/svg/close.svg';
+  static const ads = 'assets/svg/ads.svg';
+  static const heart = 'assets/svg/heart_s.svg';
+  static const busket = 'assets/svg/busket.svg';
+  static const coupon = 'assets/svg/coupon.svg';
+  static const document = 'assets/svg/document.svg';
+  static const delete = 'assets/svg/delete.svg';
+  static const edit = 'assets/svg/edit.svg';
+  static const feed = 'assets/svg/feed.svg';
+  static const fillers = 'assets/svg/fillers.svg';
+  static const localShipping = 'assets/svg/local_shipping.svg';
+  static const logo = 'assets/svg/logo.svg';
+  static const other = 'assets/svg/other.svg';
+  static const search = 'assets/svg/search.svg';
+  static const out = 'assets/svg/out.svg';
+  static const profile = 'assets/svg/profile.svg';
+  static const promotion = 'assets/svg/promotion.svg';
+  static const settings = 'assets/svg/settings.svg';
+  static const vetpharmacy = 'assets/svg/vetpharmacy.svg';
+  static const timeFill = 'assets/svg/time_fill.svg';
+  static const walletFill = 'assets/svg/wallet_fill.svg';
+  static const zen = 'assets/svg/zen.svg';
+}
