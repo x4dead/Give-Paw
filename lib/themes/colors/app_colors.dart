@@ -26,38 +26,39 @@ abstract class AppColors {
 
   // static const Color colorTertiaryRed = Color(0xffFFE3E3);
   // static const Color colorSearchCard = Color.fromRGBO(197, 207, 235, 0.25);
+  static const List<LinearGradient> listGradients = [
+    gradientGreenGreen,
+    gradienBlueBlue,
+    gradientYellowOrange,
+    gradientOrangeRed,
+    gradientOrangeRed,
+    gradientGreenGreen,
+    gradientGray
+  ];
+  static const LinearGradient gradientGray = LinearGradient(
+    colors: [colorGray80, colorGray80],
+  );
+  static const LinearGradient gradientYellowOrange = LinearGradient(colors: [
+    Color(0xFFFFD600),
+    Color(0xFFFF7A00),
+  ], begin: Alignment.topCenter, end: Alignment.bottomCenter);
+  static const LinearGradient gradientOrangeRed = LinearGradient(colors: [
+    Color(0xFFFF8A00),
+    Color(0xFFFF2E00),
+  ], begin: Alignment.topCenter, end: Alignment.bottomCenter);
 
-  static const LinearGradient gradientYellowOrange = LinearGradient(
-    colors: [
-      Color(0xFFFFD600),
-      Color(0xFFFF7A00),
-    ],
-  );
-  static const LinearGradient gradientOrangeRed = LinearGradient(
-    colors: [
-      Color(0xFFFF8A00),
-      Color(0xFFFF2E00),
-    ],
-  );
-
-  static const LinearGradient gradientGreenGreen = LinearGradient(
-    colors: [
-      Color(0xFF1EB362),
-      Color(0xFF027558),
-    ],
-  );
-  static const LinearGradient gradienBlueBlue = LinearGradient(
-    colors: [
-      Color(0xFF2ABFFF),
-      Color(0xFF005DDC),
-    ],
-  );
-  static const LinearGradient gradientBlueViolet = LinearGradient(
-    colors: [
-      Color(0xFF4200FF),
-      Color(0xFF8800C8),
-    ],
-  );
+  static const LinearGradient gradientGreenGreen = LinearGradient(colors: [
+    Color(0xFF1EB362),
+    Color(0xFF027558),
+  ], begin: Alignment.topCenter, end: Alignment.bottomCenter);
+  static const LinearGradient gradienBlueBlue = LinearGradient(colors: [
+    Color(0xFF2ABFFF),
+    Color(0xFF005DDC),
+  ], begin: Alignment.topCenter, end: Alignment.bottomCenter);
+  static const LinearGradient gradientBlueViolet = LinearGradient(colors: [
+    Color(0xFF4200FF),
+    Color(0xFF8800C8),
+  ], begin: Alignment.topCenter, end: Alignment.bottomCenter);
 
   static const Color colorTransparent = Colors.transparent;
 }

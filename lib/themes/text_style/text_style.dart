@@ -66,7 +66,7 @@ abstract class AppTextStyle {
     fontSize: 15,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle w600s24 = TextStyle(
+  static const TextStyle w600s24 = TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.w600,
       // height: 17.0.toFigmaHeight(24),
@@ -122,6 +122,8 @@ abstract class AppTextStyle {
   );
   static const TextStyle w600s20 = TextStyle(
       fontSize: 20, fontWeight: FontWeight.w600, color: AppColors.colorGray10);
+  static const TextStyle w700s18 = TextStyle(
+      fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.colorWhite);
   static const TextStyle w700s20 = TextStyle(
       fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.colorWhite);
 
