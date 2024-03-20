@@ -1,6 +1,6 @@
 abstract class AppImages {
   static const care = 'assets/img/care.svg';
-  static const arrowLeft = 'assets/img/arrow_left.svg';
+  // static const arrowLeft = 'assets/img/arrow_left.svg';
   static const androidArrowLeft = 'assets/img/android_arrow_left.svg';
   static const iosArrowLeft = 'assets/img/ios_arrow_left.svg';
   static const accessories = 'assets/img/accessories.svg';

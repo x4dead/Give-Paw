@@ -1,12 +1,11 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/utils/router/fade_transition.dart';
 import 'package:give_paw/ui/pages/catalog_page/catalog_page.dart';
 import 'package:give_paw/ui/pages/scaffold_navigation_page.dart';
 import 'package:give_paw/ui/pages/splash_screen/splash_screen.dart';
+import 'package:give_paw/ui/pages/stories_page/stories_page.dart';
 import 'package:give_paw/ui/widgets/custom_app_bar.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,7 +26,7 @@ class AppRouter {
             // if (UserPref.getUserUid != '') {
             // return '/main';
             // } else {
-            return '/catalog';
+            return '/splash';
             // return '/auth';
             // }
           },
@@ -125,15 +124,14 @@ class AppRouter {
                 child: const SplashScreen(), key: state.pageKey);
           },
         ),
-        // GoRoute(
-        //   path: '/reconstruction',
-        //   pageBuilder: (context, state) {
-        //     return FadeTransitionPage(
-        //         child: ReconstructionPage(routeState: state),
-        //         key: state.pageKey);
-        //     // }
-        //   },
-        // ),
+        GoRoute(
+          name: 'stories',
+          path: '/stories',
+          pageBuilder: (context, state) {
+            return MaterialPage(child: const StoriesPage(), key: state.pageKey);
+            // }
+          },
+        ),
         // GoRoute(
         //   path: '/news',
         //   pageBuilder: (context, state) {

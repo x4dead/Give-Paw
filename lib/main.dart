@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:give_paw/themes/utils/extensions/no_thumb_scroll_behavior.dart';
 import 'package:give_paw/themes/utils/router/router.dart';
+// ignore: depend_on_referenced_packages
+import 'package:media_kit/media_kit.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MediaKit.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));
 }
 
