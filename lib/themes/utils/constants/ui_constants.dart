@@ -7,7 +7,7 @@ import 'package:give_paw/themes/utils/resources/app_images.dart';
 const kSBW15 = SizedBox(width: 15);
 const kSBW14 = SizedBox(width: 14);
 const kSBH14 = SizedBox(height: 14);
-const kSBH25 = SizedBox(height: 25);
+const kSBH24 = SizedBox(height: 24);
 const kSBH99 = SizedBox(height: 99);
 const spacer = Spacer();
 const kSBH50 = SizedBox(height: 50);
@@ -43,7 +43,7 @@ const kNothing = SizedBox.shrink();
 
 const kPH20T12B29 = EdgeInsets.fromLTRB(60, 12, 60, 29);
 const kPH20V12 = EdgeInsets.symmetric(horizontal: 20, vertical: 12);
-const kPH10V6 = EdgeInsets.symmetric(horizontal: 10, vertical: 6);
+const kPH10V8 = EdgeInsets.symmetric(horizontal: 10, vertical: 8);
 const kPH12 = EdgeInsets.symmetric(horizontal: 12);
 const kPH24V18 = EdgeInsets.symmetric(horizontal: 24, vertical: 18);
 const kPH14T16B18 = EdgeInsets.fromLTRB(14, 16, 14, 18);
@@ -52,7 +52,7 @@ const kPH16 = EdgeInsets.symmetric(horizontal: 16);
 const kPL15R14 = EdgeInsets.only(left: 15, right: 14);
 const kPH6 = EdgeInsets.symmetric(horizontal: 6);
 const kPZero = EdgeInsets.zero;
-const kPAll6 = EdgeInsets.all(6);
+const kPAll7 = EdgeInsets.all(7);
 const kPV8H20 = EdgeInsets.symmetric(horizontal: 20, vertical: 8);
 const kPAll20 = EdgeInsets.all(20);
 const kPAll10 = EdgeInsets.all(10);
@@ -79,6 +79,15 @@ const catalogElements = [
   (AppImages.vetpharmacy, 'Ветаптека', 18),
   (AppImages.other, 'Разное', 11.82),
 ];
+const catalogElementsRouteName = [
+  ('promotions'),
+  ('pet-food'),
+  ('fillers'),
+  ('accessories'),
+  ('grooming'),
+  ('vet-pharmacy'),
+  ('other'),
+];
 const bottomNavBarElements = [
   (AppImages.ads, 'Каталог'),
   (AppImages.busket, 'Корзина'),
@@ -86,7 +95,8 @@ const bottomNavBarElements = [
   (AppImages.profile, 'Профиль'),
 ];
 const allCircularRadius12 = BorderRadius.all(Radius.circular(12));
-const roundedBoxDecoration = BoxDecoration(borderRadius: allCircularRadius12);
+const allCircularRadius8 = BorderRadius.all(Radius.circular(8));
+const roundedBoxDecoration = BoxDecoration(borderRadius: allCircularRadius8);
 ColorFilter svgColorFilter({Color? color}) =>
     ColorFilter.mode(color ?? AppColors.colorGray60, BlendMode.srcIn);
 

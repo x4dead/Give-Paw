@@ -25,18 +25,14 @@ class BottomNavBar extends ConsumerWidget {
                 4,
                 (index) => GestureDetector(
                       onTap: () {
-                        ref.read(selectedNavBar.notifier).state = index;
-                        navigationShell.goBranch(index);
+                        if (ref.watch(selectedNavBar) != index) {
+                          ref.read(selectedNavBar.notifier).state = index;
+                          navigationShell.goBranch(index);
+                        }
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: context.width >= 364
-                                ? 10
-                                :
-                                // context.width >= 400
-                                //     ? 10
-                                //     :
-                                4.5),
+                            horizontal: context.width >= 364 ? 10 : 4.5),
                         child: Column(
                           children: [
                             SvgPicture.asset(

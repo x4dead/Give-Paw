@@ -18,7 +18,15 @@ class CategoryCard extends StatelessWidget {
               topRight: index == 2 || index == 4 ? radius6 : radius24,
             ));
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        // Navigator.pushAndRemoveUntil(
+        //     context,
+        //     CustomPageRoute(CategoryPage(catalogElements[index].$2)),
+        //     (route) => true);
+        final param = catalogElementsRouteName[index];
+        context
+            .go('/catalog/$param', extra: {"title": catalogElements[index].$2});
+      },
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.bottomLeft,

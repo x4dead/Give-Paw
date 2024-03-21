@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/utils/router/fade_transition.dart';
 import 'package:give_paw/ui/pages/catalog_page/catalog_page.dart';
+import 'package:give_paw/ui/pages/category_page/category_page.dart';
 import 'package:give_paw/ui/pages/scaffold_navigation_page.dart';
 import 'package:give_paw/ui/pages/splash_screen/splash_screen.dart';
 import 'package:give_paw/ui/pages/stories_page/stories_page.dart';
@@ -42,23 +43,43 @@ class AppRouter {
               StatefulShellBranch(
                 routes: <RouteBase>[
                   GoRoute(
-                    path: '/catalog',
-                    pageBuilder: (BuildContext context, GoRouterState state) =>
-                        FadeTransitionPage(
-                            key: state.pageKey, child: const CatalogPage()),
-                  ),
+                      path: '/catalog',
+                      pageBuilder:
+                          (BuildContext context, GoRouterState state) =>
+                              FadeTransitionPage(
+                                  key: state.pageKey,
+                                  child: const CatalogPage()),
+                      routes: [
+                        GoRoute(
+                          parentNavigatorKey: navigatorKey,
+                          path: ':param',
+                          pageBuilder:
+                              (BuildContext context, GoRouterState state) {
+                            Map<String, dynamic>? map =
+                                state.extra as Map<String, dynamic>?;
+                            return FadeTransitionPage(
+                                key: state.pageKey,
+                                child: CategoryPage(map?['title']));
+                          },
+                        ),
+                      ]),
                 ],
               ),
-              StatefulShellBranch(
-                routes: <RouteBase>[
-                  GoRoute(
-                    path: '/catalogk',
-                    pageBuilder: (BuildContext context, GoRouterState state) =>
-                        FadeTransitionPage(
-                            key: state.pageKey, child: const CatalogPage()),
-                  ),
-                ],
-              ),
+              // StatefulShellBranch(
+              //   routes: <RouteBase>[
+              // GoRoute(
+              //   name: 'category',
+              //   path: '/category',
+              //   pageBuilder: (BuildContext context, GoRouterState state) {
+              //     Map<String, dynamic>? map =
+              //         state.extra as Map<String, dynamic>?;
+              //     return FadeTransitionPage(
+              //         key: state.pageKey,
+              //         child: CategoryPage(map?['title']));
+              //   },
+              // ),
+              //   ],
+              // ),
               StatefulShellBranch(
                 routes: <RouteBase>[
                   GoRoute(

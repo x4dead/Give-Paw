@@ -7,6 +7,9 @@ import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
 import 'package:give_paw/themes/utils/extensions/media_query.dart';
 import 'package:give_paw/themes/utils/resources/app_images.dart';
+import 'package:give_paw/themes/utils/router/custom_page_route.dart';
+import 'package:give_paw/themes/utils/router/fade_transition.dart';
+import 'package:give_paw/ui/pages/category_page/category_page.dart';
 import 'package:give_paw/ui/widgets/splash_button.dart';
 import 'package:go_router/go_router.dart';
 
