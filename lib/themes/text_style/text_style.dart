@@ -72,19 +72,20 @@ abstract class AppTextStyle {
       // height: 17.0.toFigmaHeight(24),
       color: AppColors.colorWhite);
 
-  static const TextStyle w500s14 = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.colorGray10
-      // height: 17.0.toFigmaHeight(14)
-      );
+  static TextStyle w500s14 = TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: AppColors.colorGray10,
+      height: 17.0.toFigmaHeight(14));
   static const TextStyle w500s15 = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle w500s16 = TextStyle(
+  static TextStyle w500s16 = TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w500,
-      // height: 19.0.toFigmaHeight(16)
+      height: 19.0.toFigmaHeight(16),
       color: AppColors.colorGray60);
   static const TextStyle w500s16fSF = TextStyle(
       fontFamily: 'SF Pro Display', fontSize: 16, fontWeight: FontWeight.w500);
@@ -130,8 +131,8 @@ abstract class AppTextStyle {
   static const TextStyle w700s28 = TextStyle(
       fontSize: 28, fontWeight: FontWeight.w700, color: AppColors.colorWhite);
 
-  static const TextStyle w400s12 = TextStyle(
-    // height: 24.0.toFigmaHeight(15),
+  static TextStyle w400s12 = TextStyle(
+    height: 14.0.toFigmaHeight(12),
     // letterSpacing: 0.3,
     fontSize: 12,
     fontWeight: FontWeight.w400,

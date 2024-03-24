@@ -5,13 +5,12 @@ import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
 import 'package:give_paw/themes/utils/resources/app_images.dart';
-import 'package:give_paw/ui/pages/category_page/widgets/chapter_card.dart';
-import 'package:give_paw/ui/widgets/custom_app_bar.dart';
+import 'package:give_paw/themes/utils/router/custom_page_route.dart';
+import 'package:give_paw/ui/pages/store_page/store_page.dart';
 import 'package:give_paw/ui/widgets/splash_button.dart';
 import 'package:go_router/go_router.dart';
 
-// final getNews = FutureProvider<List<NewsCardModel>>(
-//     (ref) async => await ref.read(River.newsPod.notifier).getNews());
+part 'widgets/chapter_card.dart';
 
 class CategoryPage extends ConsumerStatefulWidget {
   const CategoryPage(

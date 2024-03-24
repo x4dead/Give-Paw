@@ -59,7 +59,7 @@ class AppRouter {
                                 state.extra as Map<String, dynamic>?;
                             return FadeTransitionPage(
                                 key: state.pageKey,
-                                child: CategoryPage(map?['title']));
+                                child: CategoryPage(map?['title'] ?? 'NULL'));
                           },
                         ),
                       ]),

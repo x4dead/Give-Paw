@@ -52,10 +52,14 @@ const kPH16 = EdgeInsets.symmetric(horizontal: 16);
 const kPL15R14 = EdgeInsets.only(left: 15, right: 14);
 const kPH6 = EdgeInsets.symmetric(horizontal: 6);
 const kPZero = EdgeInsets.zero;
+const kPAll4 = EdgeInsets.all(4);
 const kPAll7 = EdgeInsets.all(7);
+
+const kPAll6 = EdgeInsets.all(6);
 const kPV8H20 = EdgeInsets.symmetric(horizontal: 20, vertical: 8);
 const kPAll20 = EdgeInsets.all(20);
 const kPAll10 = EdgeInsets.all(10);
+const kPV4H8 = EdgeInsets.symmetric(horizontal: 8, vertical: 4);
 const kPV12R12 = EdgeInsets.fromLTRB(0, 12, 12, 12);
 const kPV10 = EdgeInsets.symmetric(vertical: 10);
 const kPV15 = EdgeInsets.symmetric(vertical: 15);
