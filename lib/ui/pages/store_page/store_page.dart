@@ -24,9 +24,9 @@ class _StorePageState extends ConsumerState<StorePage> {
   final StateProvider<int> isSelectedIndex = StateProvider<int>((ref) => 1);
   @override
   Widget build(BuildContext context) {
-    final data = List.generate(sProducts.length, (index) {
-      return VertProductCard(product: sProducts[index]);
-    });
+    // final data = List.generate(sProducts.length, (index) {
+    //   return VertProductCard(product: sProducts[index]);
+    // });
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -174,6 +174,63 @@ class _StorePageState extends ConsumerState<StorePage> {
                       ),
                       itemBuilder: (context, index) {
                         return VertProductCard(product: sProducts[index]);
+                      },
+                    ),
+                  ),
+                  const SliverToBoxAdapter(child: kSBH12),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 26),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Может быть интересно',
+                              style: AppTextStyle.w500s18),
+                          Container(
+                            clipBehavior: Clip.hardEdge,
+                            height: 38,
+                            decoration: roundedBoxDecoration.copyWith(
+                                color: AppColors.colorGray80),
+                            child: SplashButton(
+                              onTap: () {},
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 26),
+                                child: Center(
+                                  child: Text('Еще',
+                                      style: AppTextStyle.w500s16.copyWith(
+                                          color: AppColors.colorGray10)),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SliverToBoxAdapter(child: kSBH12),
+                  SliverPadding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: context.width >= 320 && context.width < 375
+                            ? 5 * pow(context.width / 320, 1).toDouble()
+                            : 20),
+                    sliver: SliverGrid.builder(
+                      itemCount: 4,
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 196,
+                        mainAxisExtent: 292,
+                        crossAxisSpacing:
+                            context.width >= 385 && context.width < 500
+                                ? 3 * pow(context.width / 385, 8.5).toDouble()
+                                : context.width >= 500
+                                    ? 30
+                                    : 3,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 0.506,
+                      ),
+                      itemBuilder: (context, index) {
+                        return VertProductCard(
+                            product: interestingProducts[index]);
                       },
                     ),
                   ),
