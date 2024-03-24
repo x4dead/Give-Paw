@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:give_paw/model/product_model.dart';
 import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
@@ -22,11 +23,11 @@ class StorePage extends ConsumerStatefulWidget {
 
 class _StorePageState extends ConsumerState<StorePage> {
   final StateProvider<int> isSelectedIndex = StateProvider<int>((ref) => 1);
+  final data = StateProvider(
+      (ref) => sProducts.where((a) => a.petType == 'dogs').toList());
+
   @override
   Widget build(BuildContext context) {
-    // final data = List.generate(sProducts.length, (index) {
-    //   return VertProductCard(product: sProducts[index]);
-    // });
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -111,10 +112,16 @@ class _StorePageState extends ConsumerState<StorePage> {
                                         ref.watch(isSelectedIndex) == 0) {
                                       ref.read(isSelectedIndex.notifier).state =
                                           1;
+                                      ref.read(data.notifier).state = sProducts
+                                          .where((a) => a.petType == 'dogs')
+                                          .toList();
                                     } else if (itemIndex == 0 &&
                                         ref.watch(isSelectedIndex) == 1) {
                                       ref.read(isSelectedIndex.notifier).state =
                                           0;
+                                      ref.read(data.notifier).state = sProducts
+                                          .where((a) => a.petType == 'cats')
+                                          .toList();
                                     }
 
                                     // ref.watch(isSelected).toggleBool();
@@ -159,7 +166,7 @@ class _StorePageState extends ConsumerState<StorePage> {
                             ? 5 * pow(context.width / 320, 1).toDouble()
                             : 20),
                     sliver: SliverGrid.builder(
-                      itemCount: sProducts.length,
+                      itemCount: ref.watch(data).length,
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 196,
                         mainAxisExtent: 292,
@@ -173,7 +180,7 @@ class _StorePageState extends ConsumerState<StorePage> {
                         childAspectRatio: 0.506,
                       ),
                       itemBuilder: (context, index) {
-                        return VertProductCard(product: sProducts[index]);
+                        return VertProductCard(product: ref.watch(data)[index]);
                       },
                     ),
                   ),
