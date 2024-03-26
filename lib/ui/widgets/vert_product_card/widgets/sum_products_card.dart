@@ -35,27 +35,21 @@ class SumProductsCard extends StatelessWidget {
                   color: AppColors.colorWhite,
                 )),
           ),
-          IntrinsicHeight(
-            child: IntrinsicWidth(
-              child: Stack(
-                children: [
-                  const SizedBox(height: 31),
-                  Text(
-                    '$productCount шт',
-                    style: AppTextStyle.w500s16
-                        .copyWith(color: AppColors.colorWhite),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    child: Text(
-                      '\$$price',
-                      style: AppTextStyle.w400s12.copyWith(
-                          color: AppColors.colorWhite.withOpacity(0.6)),
-                    ),
-                  )
-                ],
+          Column(
+            children: [
+              Text(
+                '$productCount шт',
+                style: AppTextStyle.w500s16.copyWith(
+                    color: AppColors.colorWhite,
+                    height: 18.0.toFigmaHeight(16)),
               ),
-            ),
+              Text(
+                '\$$price',
+                style: AppTextStyle.w400s12.copyWith(
+                    color: AppColors.colorWhite.withOpacity(0.6),
+                    height: 13.0.toFigmaHeight(12)),
+              )
+            ],
           ),
           SizedBox(
             height: 35,

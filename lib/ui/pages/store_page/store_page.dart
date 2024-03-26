@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:give_paw/model/product_model.dart';
 import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
@@ -14,6 +13,14 @@ import 'package:give_paw/ui/widgets/splash_button.dart';
 import 'package:give_paw/ui/widgets/vert_product_card/vert_product_card.dart';
 import 'package:go_router/go_router.dart';
 
+final StateProvider<int> isSelectedIndex = StateProvider<int>((ref) => 1);
+
+StateProvider<List<int>> selectedPets = StateProvider((ref) {
+  return [ref.read(isSelectedIndex)];
+});
+final data = StateProvider(
+    (ref) => sProducts.where((a) => a.petType == 'dogs').toList());
+
 class StorePage extends ConsumerStatefulWidget {
   const StorePage({super.key});
 
@@ -22,10 +29,6 @@ class StorePage extends ConsumerStatefulWidget {
 }
 
 class _StorePageState extends ConsumerState<StorePage> {
-  final StateProvider<int> isSelectedIndex = StateProvider<int>((ref) => 1);
-  final data = StateProvider(
-      (ref) => sProducts.where((a) => a.petType == 'dogs').toList());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +47,6 @@ class _StorePageState extends ConsumerState<StorePage> {
                         width: 36,
                         child: IconButton(
                             onPressed: () {
-                              // context.go('/catalog');
                               context.pop();
                             },
                             icon: SvgPicture.asset(
@@ -56,7 +58,6 @@ class _StorePageState extends ConsumerState<StorePage> {
                       kSBW12,
                       Flexible(
                         child: Container(
-                          // width: double.infinity,
                           decoration: roundedBoxDecoration.copyWith(
                               color: AppColors.colorGray80),
                           padding: const EdgeInsets.symmetric(
@@ -77,8 +78,7 @@ class _StorePageState extends ConsumerState<StorePage> {
                         width: 36,
                         child: IconButton(
                             onPressed: () {
-                              // context.go('/catalog');
-                              // context.pop();
+                              context.pushNamed('filter');
                             },
                             icon: SvgPicture.asset(
                               AppImages.settings,
@@ -108,23 +108,41 @@ class _StorePageState extends ConsumerState<StorePage> {
                                             : AppColors.colorGray80),
                                 child: SplashButton(
                                   onTap: () {
-                                    if (itemIndex == 1 &&
-                                        ref.watch(isSelectedIndex) == 0) {
-                                      ref.read(isSelectedIndex.notifier).state =
-                                          1;
-                                      ref.read(data.notifier).state = sProducts
-                                          .where((a) => a.petType == 'dogs')
-                                          .toList();
-                                    } else if (itemIndex == 0 &&
-                                        ref.watch(isSelectedIndex) == 1) {
-                                      ref.read(isSelectedIndex.notifier).state =
-                                          0;
-                                      ref.read(data.notifier).state = sProducts
-                                          .where((a) => a.petType == 'cats')
-                                          .toList();
+                                    if (itemIndex == 1) {
+                                      if (ref.watch(isSelectedIndex) != 1) {
+                                        ref
+                                            .read(isSelectedIndex.notifier)
+                                            .state = 1;
+                                        ref.read(data.notifier).state =
+                                            sProducts
+                                                .where(
+                                                    (a) => a.petType == 'dogs')
+                                                .toList();
+                                        if (ref.watch(selectedPets).first !=
+                                            1) {
+                                          ref
+                                              .read(selectedPets.notifier)
+                                              .state = [1];
+                                        }
+                                      }
+                                    } else if (itemIndex == 0) {
+                                      if (ref.watch(isSelectedIndex) != 0) {
+                                        ref
+                                            .read(isSelectedIndex.notifier)
+                                            .state = 0;
+                                        ref.read(data.notifier).state =
+                                            sProducts
+                                                .where(
+                                                    (a) => a.petType == 'cats')
+                                                .toList();
+                                        if (ref.watch(selectedPets).first !=
+                                            0) {
+                                          ref
+                                              .read(selectedPets.notifier)
+                                              .state = [0];
+                                        }
+                                      }
                                     }
-
-                                    // ref.watch(isSelected).toggleBool();
                                   },
                                   child: Padding(
                                     ///TODO: ВЫнести константу
@@ -139,8 +157,11 @@ class _StorePageState extends ConsumerState<StorePage> {
                                                     itemIndex == 0
                                                 ? AppColors.colorGray10
                                                 : ref.watch(isSelectedIndex) ==
-                                                            0 &&
-                                                        itemIndex == 1
+                                                                0 &&
+                                                            itemIndex == 1 ||
+                                                        ref.watch(
+                                                                isSelectedIndex) >
+                                                            1
                                                     ? AppColors.colorGray10
                                                     : AppColors.colorWhite),
                                       ),
@@ -187,12 +208,15 @@ class _StorePageState extends ConsumerState<StorePage> {
                   const SliverToBoxAdapter(child: kSBH12),
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 26),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: context.width <= 340 ? 16 : 26),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text('Может быть интересно',
-                              style: AppTextStyle.w500s18),
+                          const Flexible(
+                            child: Text('Может быть интересно',
+                                style: AppTextStyle.w500s18),
+                          ),
                           Container(
                             clipBehavior: Clip.hardEdge,
                             height: 38,

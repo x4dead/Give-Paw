@@ -4,6 +4,7 @@ import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/utils/router/fade_transition.dart';
 import 'package:give_paw/ui/pages/catalog_page/catalog_page.dart';
 import 'package:give_paw/ui/pages/category_page/category_page.dart';
+import 'package:give_paw/ui/pages/filter_page/filter_page.dart';
 import 'package:give_paw/ui/pages/scaffold_navigation_page.dart';
 import 'package:give_paw/ui/pages/splash_screen/splash_screen.dart';
 import 'package:give_paw/ui/pages/stories_page/stories_page.dart';
@@ -65,21 +66,6 @@ class AppRouter {
                       ]),
                 ],
               ),
-              // StatefulShellBranch(
-              //   routes: <RouteBase>[
-              // GoRoute(
-              //   name: 'category',
-              //   path: '/category',
-              //   pageBuilder: (BuildContext context, GoRouterState state) {
-              //     Map<String, dynamic>? map =
-              //         state.extra as Map<String, dynamic>?;
-              //     return FadeTransitionPage(
-              //         key: state.pageKey,
-              //         child: CategoryPage(map?['title']));
-              //   },
-              // ),
-              //   ],
-              // ),
               StatefulShellBranch(
                 routes: <RouteBase>[
                   GoRoute(
@@ -100,42 +86,6 @@ class AppRouter {
                   ),
                 ],
               ),
-              // StatefulShellBranch(
-              //   routes: <RouteBase>[
-              //     GoRoute(
-              //       path: '/locations',
-              //       pageBuilder: (BuildContext context, GoRouterState state) =>
-              //           FadeTransitionPage(
-              //               key: state.pageKey,
-              //               child: const Center(child: Text('Coming soon'))),
-              //       routes: const <RouteBase>[],
-              //     ),
-              //   ],
-              // ),
-              // StatefulShellBranch(
-              //   routes: <RouteBase>[
-              //     GoRoute(
-              //       path: '/episodes',
-              //       pageBuilder: (BuildContext context, GoRouterState state) =>
-              //           FadeTransitionPage(
-              //               key: state.pageKey,
-              //               child: const Center(child: Text('Coming soon'))),
-              //       routes: const <RouteBase>[],
-              //     ),
-              //   ],
-              // ),
-              // StatefulShellBranch(
-              //   routes: <RouteBase>[
-              //     GoRoute(
-              //       path: '/settings',
-              //       pageBuilder: (BuildContext context, GoRouterState state) =>
-              //           FadeTransitionPage(
-              //               key: state.pageKey,
-              //               child: const Center(child: Text('Coming soon'))),
-              //       routes: const <RouteBase>[],
-              //     ),
-              //   ],
-              // ),
             ]),
 
         GoRoute(
@@ -143,6 +93,14 @@ class AppRouter {
           pageBuilder: (context, state) {
             return FadeTransitionPage(
                 child: const SplashScreen(), key: state.pageKey);
+          },
+        ),
+        GoRoute(
+          name: 'filter',
+          path: '/filter',
+          pageBuilder: (context, state) {
+            return FadeTransitionPage(
+                child: const FilterPage(), key: state.pageKey);
           },
         ),
         GoRoute(

@@ -8,6 +8,7 @@ import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
 import 'package:give_paw/themes/utils/extensions/converting.dart';
+import 'package:give_paw/themes/utils/extensions/figma_height.dart';
 import 'package:give_paw/themes/utils/resources/app_images.dart';
 import 'package:give_paw/ui/widgets/parameters_card.dart';
 import 'package:give_paw/ui/widgets/splash_button.dart';
@@ -34,11 +35,8 @@ class _VertProductCardConsumerState extends ConsumerState<VertProductCard> {
     return Container(
       width: 166,
       clipBehavior: Clip.hardEdge,
-      decoration: roundedBoxDecoration.copyWith(
-        borderRadius: allCircularRadius12,
-        // color: AppColors.color353535,
-      ),
-      // padding: kPAll4,
+      decoration:
+          roundedBoxDecoration.copyWith(borderRadius: allCircularRadius12),
       child: SplashButton(
         highlightColor: AppColors.colorGray60.withOpacity(0.01),
         onTap: () {},

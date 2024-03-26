@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/utils/extensions/no_thumb_scroll_behavior.dart';
 import 'package:give_paw/themes/utils/router/router.dart';
 // ignore: depend_on_referenced_packages
@@ -23,16 +24,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
       theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: 'Gilroy',
-        // iconButtonTheme: IconButtonThemeData(
-        //   style: IconButton.styleFrom(minimumSize: kS36, padding: kPAll6),
-        // ),
-        // textSelectionTheme: TextSelectionThemeData(
-        //     cursorColor: AppColors.colorDarkGray,
-        //     selectionColor: AppColors.colorBlue.withOpacity(0.5),
-        //     selectionHandleColor: AppColors.colorBlue)
-      ),
+          useMaterial3: true,
+          fontFamily: 'Gilroy',
+          // iconButtonTheme: IconButtonThemeData(
+          //   style: IconButton.styleFrom(minimumSize: kS36, padding: kPAll6),
+          // ),
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: AppColors.colorGreen,
+            selectionColor: AppColors.colorGreen.withOpacity(0.25),
+            selectionHandleColor: AppColors.colorGreen,
+          )),
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
       routeInformationProvider: router.routeInformationProvider,

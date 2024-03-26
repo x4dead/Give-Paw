@@ -30,45 +30,36 @@ class PriceBusketViewWidget extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(12, 6, 6, 6),
                 child: Row(
                   children: [
-                    IntrinsicHeight(
-                      child: IntrinsicWidth(
-                        child: Stack(
-                          children: [
-                            const SizedBox(height: 31),
-                            if (discountPrice != null) ...[
-                              Positioned(
-                                // top: 0,
-                                child: Text(
-                                  '\$$previousPrice',
-                                  style: AppTextStyle.w400s12.copyWith(
-                                      color: AppColors.colorGray60,
-                                      decorationColor: AppColors.colorGray60,
-                                      decoration: TextDecoration.lineThrough),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                child: Text(
-                                  '\$$discountPrice',
-                                  style: AppTextStyle.w500s16.copyWith(
-                                      color: AppColors.colorGray10,
-                                      decorationStyle:
-                                          TextDecorationStyle.wavy),
-                                ),
-                              )
-                            ] else
-                              Center(
-                                child: Text(
-                                  '\$$previousPrice',
-                                  style: AppTextStyle.w500s16.copyWith(
-                                      color: AppColors.colorGray10,
-                                      decorationStyle:
-                                          TextDecorationStyle.wavy),
-                                ),
-                              )
-                          ],
-                        ),
-                      ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // const SizedBox(height: 31),
+                        if (discountPrice != null) ...[
+                          Text(
+                            '\$$previousPrice',
+                            style: AppTextStyle.w400s12.copyWith(
+                                color: AppColors.colorGray60,
+                                height: 13.0.toFigmaHeight(12),
+                                decorationColor: AppColors.colorGray60,
+                                decoration: TextDecoration.lineThrough),
+                          ),
+                          Text(
+                            '\$$discountPrice',
+                            style: AppTextStyle.w500s16.copyWith(
+                                color: AppColors.colorGray10,
+                                height: 18.0.toFigmaHeight(16),
+                                decorationStyle: TextDecorationStyle.wavy),
+                          )
+                        ] else
+                          Center(
+                            child: Text(
+                              '\$$previousPrice',
+                              style: AppTextStyle.w500s16.copyWith(
+                                  color: AppColors.colorGray10,
+                                  decorationStyle: TextDecorationStyle.wavy),
+                            ),
+                          )
+                      ],
                     ),
                     const SizedBox(width: 2),
                     const Icon(
