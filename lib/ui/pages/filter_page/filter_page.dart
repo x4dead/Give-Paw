@@ -19,6 +19,8 @@ import 'package:go_router/go_router.dart';
 part 'widgets/filter_switcher.dart';
 part 'widgets/filter_radio_list_tile_button.dart';
 
+final isDiscountProducts = StateProvider((ref) => false);
+
 class FilterPage extends ConsumerStatefulWidget {
   const FilterPage({super.key});
 
@@ -36,6 +38,8 @@ class _FilterPageConsumerState extends ConsumerState<FilterPage> {
   Widget build(BuildContext context) {
     final List<int> _selectedIndex = [];
     _selectedIndex.addAll(ref.read(selectedPets));
+    final StateProvider<bool> _isDiscountProducts =
+        StateProvider((ref) => ref.read(isDiscountProducts));
     const pet = [
       ('Кошки', 'cats'),
       ('Собаки', 'dogs'),
@@ -127,7 +131,7 @@ class _FilterPageConsumerState extends ConsumerState<FilterPage> {
               ],
             ),
             kSBH10,
-            FilterSwitcher(),
+            FilterSwitcher(_isDiscountProducts),
             kSBH10,
             const Padding(
                 padding: kPH6,
@@ -159,11 +163,19 @@ class _FilterPageConsumerState extends ConsumerState<FilterPage> {
                 buttonText: 'Готово',
                 onTap: () {
                   ref.read(selectedPets.notifier).state = _selectedIndex;
+                  ref.read(isDiscountProducts.notifier).state =
+                      ref.watch(_isDiscountProducts);
                   ref.read(data.notifier).state = sProducts.where((a) {
                     return _selectedIndex
                         .where((e) => a.petType == pet[e].$2)
                         .isNotEmpty;
                   }).toList();
+                  if (ref.watch(isDiscountProducts) == true) {
+                    ref.read(data.notifier).state = ref.watch(data).where((a) {
+                      return a.discountPrice != null;
+                    }).toList();
+                  }
+
                   if (ref.watch(selectedPets).length > 2) {
                     ref.read(isSelectedIndex.notifier).state = 3;
                   }

@@ -1,20 +1,16 @@
 ﻿part of '../filter_page.dart';
 
-final isDiscountProducts = StateProvider((ref) => true);
-
 class FilterSwitcher extends ConsumerWidget {
-  const FilterSwitcher({super.key});
+  const FilterSwitcher(this.isOn, {super.key});
+  final StateProvider<bool> isOn;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void onChanged() {
-      if (ref.watch(isDiscountProducts) == true) {
-        ref.read(isDiscountProducts.notifier).state = false;
-
-        // UserPref.isNotificationsOn = false;
+      if (ref.watch(isOn) == true) {
+        ref.read(isOn.notifier).state = false;
       } else {
-        ref.read(isDiscountProducts.notifier).state = true;
-        // UserPref.isNotificationsOn = true;
+        ref.read(isOn.notifier).state = true;
       }
     }
 
@@ -36,7 +32,7 @@ class FilterSwitcher extends ConsumerWidget {
                 spacer,
                 CupertinoSwitch(
                     activeColor: AppColors.colorGreen,
-                    value: ref.watch(isDiscountProducts),
+                    value: ref.watch(isOn),
                     onChanged: (v) {
                       onChanged();
                     })

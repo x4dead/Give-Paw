@@ -8,6 +8,7 @@ import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
 import 'package:give_paw/themes/utils/extensions/media_query.dart';
 import 'package:give_paw/themes/utils/resources/app_images.dart';
+import 'package:give_paw/ui/pages/filter_page/filter_page.dart';
 import 'package:give_paw/ui/pages/store_page/data.dart';
 import 'package:give_paw/ui/widgets/splash_button.dart';
 import 'package:give_paw/ui/widgets/vert_product_card/vert_product_card.dart';
@@ -118,6 +119,14 @@ class _StorePageState extends ConsumerState<StorePage> {
                                                 .where(
                                                     (a) => a.petType == 'dogs')
                                                 .toList();
+
+                                        if (ref.watch(isDiscountProducts) ==
+                                            true) {
+                                          ref.read(data.notifier).state =
+                                              ref.watch(data).where((a) {
+                                            return a.discountPrice != null;
+                                          }).toList();
+                                        }
                                         if (ref.watch(selectedPets).first !=
                                             1) {
                                           ref
@@ -135,6 +144,13 @@ class _StorePageState extends ConsumerState<StorePage> {
                                                 .where(
                                                     (a) => a.petType == 'cats')
                                                 .toList();
+                                        if (ref.watch(isDiscountProducts) ==
+                                            true) {
+                                          ref.read(data.notifier).state =
+                                              ref.watch(data).where((a) {
+                                            return a.discountPrice != null;
+                                          }).toList();
+                                        }
                                         if (ref.watch(selectedPets).first !=
                                             0) {
                                           ref
