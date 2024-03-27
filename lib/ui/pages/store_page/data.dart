@@ -17,9 +17,9 @@ final List<ProductModel> sProducts = [
   ),
   ProductModel(
     imgs: [
+      "https://png.pngtree.com/png-vector/20201129/ourmid/pngtree-dog-food-png-image_2404540.jpg",
       "https://pngimg.com/d/dog_food_PNG37.png",
       "https://img.favpng.com/21/0/1/puppy-dog-food-cat-food-pet-food-png-favpng-Q9HPLdF2eEBzQqvD0execSQsU.jpg",
-      "https://png.pngtree.com/png-vector/20201129/ourmid/pngtree-dog-food-png-image_2404540.jpg",
     ],
     title:
         'Мясное ассорти с потрошками для собак Четвероногий гурман “Мясное ассорти” для собак – это влажный корм премиум класса с фаршевой консистенцией. В его составе 95% мясных',
@@ -68,6 +68,20 @@ final List<ProductModel> sProducts = [
     discountPrice: 3991,
     producId: 100000002,
     previousPrice: 59911,
+    topSeller: true,
+    inStock: false,
+    petType: "other",
+  ),
+  ProductModel(
+    imgs: [
+      "https://img.freepik.com/free-vector/cat-food-landing-page-template_23-2148972341.jpg?w=1380&t=st=1711277447~exp=1711278047~hmac=265cb789eb314b0ef0d14a2148efbec05bbadbbb43c02b15197b25592d77a615"
+          "https://static.wixstatic.com/media/5e60b4_acc20f1a53654071824cec0d34fd8b03~mv2.png/v1/fill/w_440,h_440,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/image-asset-2.png",
+      "https://img.favpng.com/21/0/1/puppy-dog-food-cat-food-pet-food-png-favpng-Q9HPLdF2eEBzQqvD0execSQsU.jpg",
+    ],
+    title: 'Monge Dog BWild LOW GRAIN низкозерновой корм из мяса',
+    discountPrice: 25,
+    producId: 100000002,
+    previousPrice: 30,
     topSeller: true,
     inStock: false,
     petType: "other",
