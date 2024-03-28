@@ -8,19 +8,12 @@ import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
 import 'package:give_paw/themes/utils/extensions/media_query.dart';
 import 'package:give_paw/themes/utils/resources/app_images.dart';
+import 'package:give_paw/themes/utils/router/custom_page_route.dart';
 import 'package:give_paw/ui/pages/filter_page/filter_page.dart';
 import 'package:give_paw/ui/pages/store_page/data.dart';
 import 'package:give_paw/ui/widgets/splash_button.dart';
 import 'package:give_paw/ui/widgets/vert_product_card/vert_product_card.dart';
 import 'package:go_router/go_router.dart';
-
-final StateProvider<int> isSelectedIndex = StateProvider<int>((ref) => 1);
-
-StateProvider<List<int>> selectedPets = StateProvider((ref) {
-  return [ref.read(isSelectedIndex)];
-});
-final data = StateProvider(
-    (ref) => sProducts.where((a) => a.petType == 'dogs').toList());
 
 class StorePage extends ConsumerStatefulWidget {
   const StorePage({super.key});
@@ -30,6 +23,17 @@ class StorePage extends ConsumerStatefulWidget {
 }
 
 class _StorePageState extends ConsumerState<StorePage> {
+  final StateProvider<int> isSelectedIndex = StateProvider<int>((ref) => 1);
+
+  late StateProvider<List<int>> selectedPets = StateProvider((ref) {
+    return [ref.read(isSelectedIndex)];
+  });
+  final data = StateProvider(
+      (ref) => sProducts.where((a) => a.petType == 'dogs').toList());
+
+  final isDiscountProducts = StateProvider((ref) => false);
+  StateProvider<int?> priceFrom = StateProvider((ref) => null);
+  StateProvider<int?> priceTo = StateProvider((ref) => null);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,8 +65,7 @@ class _StorePageState extends ConsumerState<StorePage> {
                         child: Container(
                           decoration: roundedBoxDecoration.copyWith(
                               color: AppColors.colorGray80),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 14),
+                          padding: kPH16V14,
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -79,7 +82,21 @@ class _StorePageState extends ConsumerState<StorePage> {
                         width: 36,
                         child: IconButton(
                             onPressed: () {
-                              context.pushNamed('filter');
+                              // context.pushNamed('filter');
+                              Navigator.push(
+                                context,
+                                CustomPageRoute(
+                                  FilterPage(
+                                    sProducts,
+                                    isSelectedButtonsIndex: (isSelectedIndex),
+                                    dataForSort: (data),
+                                    isDiscountProducts: (isDiscountProducts),
+                                    priceFrom: priceFrom,
+                                    priceTo: priceTo,
+                                    selectedPetsIndexes: (selectedPets),
+                                  ),
+                                ),
+                              );
                             },
                             icon: SvgPicture.asset(
                               AppImages.settings,
@@ -127,6 +144,9 @@ class _StorePageState extends ConsumerState<StorePage> {
                                             return a.discountPrice != null;
                                           }).toList();
                                         }
+                                        ref.read(priceFrom.notifier).state =
+                                            null;
+                                        ref.read(priceTo.notifier).state = null;
                                         if (ref.watch(selectedPets).first !=
                                             1) {
                                           ref
@@ -151,6 +171,9 @@ class _StorePageState extends ConsumerState<StorePage> {
                                             return a.discountPrice != null;
                                           }).toList();
                                         }
+                                        ref.read(priceFrom.notifier).state =
+                                            null;
+                                        ref.read(priceTo.notifier).state = null;
                                         if (ref.watch(selectedPets).first !=
                                             0) {
                                           ref
@@ -161,9 +184,7 @@ class _StorePageState extends ConsumerState<StorePage> {
                                     }
                                   },
                                   child: Padding(
-                                    ///TODO: ВЫнести константу
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 14),
+                                    padding: kPH16V14,
                                     child: Center(
                                       child: Text(
                                         itemIndex == 0 ? "Кошки" : "Собаки",
@@ -239,7 +260,9 @@ class _StorePageState extends ConsumerState<StorePage> {
                             decoration: roundedBoxDecoration.copyWith(
                                 color: AppColors.colorGray80),
                             child: SplashButton(
-                              onTap: () {},
+                              onTap: () {
+                                context.pushNamed('might_interesting');
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 26),

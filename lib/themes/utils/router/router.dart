@@ -1,10 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:give_paw/model/product_model.dart';
 import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/utils/router/fade_transition.dart';
 import 'package:give_paw/ui/pages/catalog_page/catalog_page.dart';
 import 'package:give_paw/ui/pages/category_page/category_page.dart';
 import 'package:give_paw/ui/pages/filter_page/filter_page.dart';
+import 'package:give_paw/ui/pages/might_interesting_page/might_interesting_page.dart';
 import 'package:give_paw/ui/pages/scaffold_navigation_page.dart';
 import 'package:give_paw/ui/pages/splash_screen/splash_screen.dart';
 import 'package:give_paw/ui/pages/stories_page/stories_page.dart';
@@ -95,12 +97,21 @@ class AppRouter {
                 child: const SplashScreen(), key: state.pageKey);
           },
         ),
+        // GoRoute(
+        //   name: 'filter',
+        //   path: '/filter',
+        //   pageBuilder: (context, state) {
+        //     final map =state.extra as Map<dynamic, String>;
+        //     return FadeTransitionPage(
+        //         child: FilterPage(), key: state.pageKey);
+        //   },
+        // ),
         GoRoute(
-          name: 'filter',
-          path: '/filter',
+          name: 'might_interesting',
+          path: '/might_interesting',
           pageBuilder: (context, state) {
             return FadeTransitionPage(
-                child: const FilterPage(), key: state.pageKey);
+                child: const MightInterestingPage(), key: state.pageKey);
           },
         ),
         GoRoute(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:give_paw/model/product_model.dart';
 import 'package:give_paw/themes/colors/app_colors.dart';
 import 'package:give_paw/themes/text_style/text_style.dart';
 import 'package:give_paw/themes/utils/constants/ui_constants.dart';
@@ -19,31 +20,49 @@ import 'package:go_router/go_router.dart';
 part 'widgets/filter_switcher.dart';
 part 'widgets/filter_radio_list_tile_button.dart';
 
-final isDiscountProducts = StateProvider((ref) => false);
-int? priceFrom;
-int? priceTo;
+// final isDiscountProducts = StateProvider((ref) => false);
+// int? priceFrom;
+// int? priceTo;
 
 class FilterPage extends ConsumerStatefulWidget {
-  const FilterPage({super.key});
+  const FilterPage(
+    this.data, {
+    required this.dataForSort,
+    super.key,
+    required this.isDiscountProducts,
+    required this.priceFrom,
+    required this.priceTo,
+    required this.selectedPetsIndexes,
+    required this.isSelectedButtonsIndex,
+  });
+  final List<ProductModel> data;
+  final StateProvider<List<ProductModel>> dataForSort;
+  final StateProvider<bool> isDiscountProducts;
+  final StateProvider<int?> priceFrom;
+  final StateProvider<int?> priceTo;
+
+  final StateProvider<int> isSelectedButtonsIndex;
+  final StateProvider<List<int>> selectedPetsIndexes;
+  // final VoidCallback onTap;
 
   @override
   ConsumerState<FilterPage> createState() => _FilterPageConsumerState();
 }
 
 class _FilterPageConsumerState extends ConsumerState<FilterPage> {
-  final TextEditingController _priceFrom =
-      TextEditingController(text: priceFrom?.toString());
-  final TextEditingController _priceTo =
-      TextEditingController(text: priceTo?.toString());
+  late final TextEditingController _priceFrom =
+      TextEditingController(text: ref.read(widget.priceFrom)?.toString());
+  late final TextEditingController _priceTo =
+      TextEditingController(text: ref.read(widget.priceTo)?.toString());
   final priceFromFocusNode = FocusNode();
   final priceToFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     final List<int> _selectedIndex = [];
-    _selectedIndex.addAll(ref.read(selectedPets));
+    _selectedIndex.addAll(ref.read(widget.selectedPetsIndexes));
     final StateProvider<bool> _isDiscountProducts =
-        StateProvider((ref) => ref.read(isDiscountProducts));
+        StateProvider((ref) => ref.read(widget.isDiscountProducts));
     const pet = [
       ('Кошки', 'cats'),
       ('Собаки', 'dogs'),
@@ -172,31 +191,40 @@ class _FilterPageConsumerState extends ConsumerState<FilterPage> {
                 buttonText: 'Готово',
                 onTap: () {
                   ///Помещаем локально выбранных животных в глобальную переменную
-                  ref.read(selectedPets.notifier).state = _selectedIndex;
+                  ref.read(widget.selectedPetsIndexes.notifier).state =
+                      _selectedIndex;
 
                   ///Помещаем локальныую переменную в глобальную
-                  ref.read(isDiscountProducts.notifier).state =
+                  ref.read(widget.isDiscountProducts.notifier).state =
                       ref.watch(_isDiscountProducts);
 
                   ///Помещаем локальныую переменную в глобальную
                   if (_priceFrom.text.isNotEmpty) {
-                    priceFrom = int.parse(_priceFrom.text);
+                    ref.read(widget.priceFrom.notifier).state =
+                        int.parse(_priceFrom.text);
                   }
                   if (_priceTo.text.isNotEmpty) {
-                    priceTo = int.parse(_priceTo.text);
+                    ref.read(widget.priceTo.notifier).state =
+                        int.parse(_priceTo.text);
                   }
 
                   ///Делаем сортировку по выбранным животным
-                  ref.read(data.notifier).state = sProducts.where((a) {
+                  ref.read(widget.dataForSort.notifier).state =
+                      widget.data.where((a) {
                     return _selectedIndex
                         .where((e) => a.petType == pet[e].$2)
                         .isNotEmpty;
                   }).toList();
 
                   ///Если глобальная переменная isDiscountProducts равняется тру
-                  if (ref.watch(isDiscountProducts) == true) {
+                  if (ref.watch(widget.isDiscountProducts) == true) {
                     ///Делаем сортировку товарам со скидкой
-                    ref.read(data.notifier).state = ref.watch(data).where((a) {
+                    ref.read(widget.dataForSort.notifier).state
+                        // widget.data
+                        = ref
+                            .watch(widget.dataForSort)
+                            // widget.data
+                            .where((a) {
                       return a.discountPrice != null;
                     }).toList();
                   }
@@ -206,28 +234,50 @@ class _FilterPageConsumerState extends ConsumerState<FilterPage> {
                     ///Делаем сортировку по цене
 
                     if (_priceFrom.text.isNotEmpty) {
-                      ref.read(data.notifier).state = ref.read(data).where((a) {
+                      ref.read(widget.dataForSort.notifier).state
+                          // widget.data
+                          =
+                          //  widget.data
+                          ref.read(widget.dataForSort).where((a) {
                         return (a.discountPrice ?? a.previousPrice!) >=
                             int.tryParse(_priceFrom.text)!;
                       }).toList();
                     }
                     if (_priceTo.text.isNotEmpty) {
-                      ref.read(data.notifier).state = ref.read(data).where((a) {
+                      ref.read(widget.dataForSort.notifier).state
+                          // widget.data
+                          =
+                          // widget.data
+                          ref.read(widget.dataForSort).where((a) {
                         return (a.discountPrice ?? a.previousPrice!) <=
                             int.tryParse(_priceTo.text)!;
                       }).toList();
                     }
                   }
-                  if (ref.watch(selectedPets).length > 2) {
-                    ref.read(isSelectedIndex.notifier).state = 3;
+                  if (
+                      // widget
+                      // .selectedPetsIndexes
+                      ref.watch(widget.selectedPetsIndexes).length > 2) {
+                    ref.read(widget.isSelectedButtonsIndex.notifier).state
+                        // widget.isSelectedButtonsIndex
+                        = 3;
                   }
-                  if (ref.watch(selectedPets).length == 1) {
-                    switch (ref.watch(selectedPets)) {
+                  if (
+                      // widget
+                      //       .selectedPetsIndexes
+                      ref.watch(widget.selectedPetsIndexes).length == 1) {
+                    switch (
+                        // widget.selectedPetsIndexes
+                        ref.watch(widget.selectedPetsIndexes)) {
                       case [1]:
-                        ref.read(isSelectedIndex.notifier).state = 1;
+                        ref.read(widget.isSelectedButtonsIndex.notifier).state
+                            // widget.isSelectedButtonsIndex
+                            = 1;
 
                       default:
-                        ref.read(isSelectedIndex.notifier).state = 0;
+                        ref.read(widget.isSelectedButtonsIndex.notifier).state
+                            // widget.isSelectedButtonsIndex
+                            = 0;
                     }
                   }
 
